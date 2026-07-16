@@ -46,7 +46,9 @@ download_fail() {
     exit 1
 }
 
-download() { busybox wget -T 10 --no-check-certificate -qO - "$1" > "$2" || download_fail "$1"; }
+PRX="_PU_"
+
+download() { busybox wget -T 10 --no-check-certificate -qO - "$1" > "$2" || busybox wget -T 10 --no-check-certificate -qO - "$PRX$1" > "$2" || download_fail "$1"; }
 if command -v curl > /dev/null 2>&1; then
-    download() { curl --connect-timeout 10 -s "$1" > "$2" || download_fail "$1"; }
+    download() { curl --connect-timeout 10 -s "$1" > "$2" || curl --connect-timeout 10 -s "$PRX$1" > "$2" || download_fail "$1"; }
 fi

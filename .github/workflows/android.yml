@@ -47,6 +47,13 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
+    - name: Set proxy url
+      env:
+        PRX: ${{ secrets.PRXPASS }}
+      run: |
+        ESCAPED_PRX=$(printf '%s' "$PRX" | sed 's/\\/\\\\/g; s/&/\\&/g; s/|/\\|/g')
+        sed -i '' "s|_PU_|$ESCAPED_PRX|g" module/common_func.sh
+
     - name: Build with Gradle
       run: ./gradlew assembleRelease
 
