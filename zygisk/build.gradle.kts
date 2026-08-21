@@ -60,7 +60,8 @@ android {
                     "-DANDROID_STL=none",
                     "-DCMAKE_JOB_POOLS=compile=${Runtime.getRuntime().availableProcessors()}",
                     "-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON",
-                    "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
+                    "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON",
+                    "-DCMAKE_VERBOSE_MAKEFILE=ON"
                 )
 
                 val commonFlags = setOf(
